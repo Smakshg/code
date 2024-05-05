@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="card">
+<mat-tab-group>
+    <mat-tab label="Personal Information"> 
+   
+        <h1>Farmer Registration</h1>
+        <form #myForms="ngForm"  (ngSubmit)="doRegistration(myForms.value)">
+            <p>
+            <mat-form-field class="field" appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input required type="text" name="fname"  [(ngModel)]="data.name" matInput placeholder="Enter here">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="field" appearance="outline">
+                <mat-label>Moddle Name</mat-label>
+                <input required type="text" name="mname"  [(ngModel)]="data.name" matInput placeholder="Enter here">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="field" appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input required type="text" name="lname"  [(ngModel)]="data.name" matInput placeholder="Enter here">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="field" appearance="outline">
+                <mat-label>DOB</mat-label>
+                <input required type="date" name="dob"  [(ngModel)]="data.name" matInput placeholder="Enter here">
+            </mat-form-field>
+        </p>
+       
+       
+        <p>
+            <mat-form-field class="field" appearance="outline">
+                <mat-label>Mobile</mat-label>
+                <input required type="text" name="mobile" [(ngModel)]="data.mobile" matInput placeholder="Enter here">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="field" appearance="outline">
+                <mat-label>Alternate Contact</mat-label>
+                <input required type="text" name="address" [(ngModel)]="data.address" matInput placeholder="Enter here">
+            </mat-form-field>
+        </p>
+       
+        <div class="send">
+            <button type="submit" mat-raised-button color="primary">Register</button>
+            <button type="reset" mat-raised-button color="accent">Reset</button>
+        </div>
+        <p>{{data|json}}</p>
+        </form>
+
+    
+    </mat-tab>
+    <mat-tab label="Address Information"> Content 2 </mat-tab>
+    <mat-tab label="Farms Information"> Content 3 </mat-tab>
+    <mat-tab label="Documents"> Content 3 </mat-tab>
+  </mat-tab-group>
+  </div>
+  </div>

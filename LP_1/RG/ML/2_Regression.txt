@@ -1,0 +1,51 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn import metrics
+
+dataset=pd.read_csv('temperatures.csv')
+print(dataset.describe())
+print(dataset.shape)
+
+X=dataset['JAN'].values.reshape(-1,1)
+Y=dataset['FEB'].values.reshape(-1,1)
+X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.2,random_state=0)
+
+model=LinearRegression()
+model.fit(X_train,Y_train)
+
+Y_pred=model.predict(X_test)
+
+dataset.plot(x='JAN',y='FEB',style='o')
+plt.title('JAN vs FEB')
+plt.xlabel('mintemp')
+plt.ylabel('maxtemp')
+plt.show()
+
+plt.figure(figsize=(15,10))
+plt.tight_layout()
+seaborn.distplot(dataset['FEB'])
+plt.show()
+
+print('Intercept is :',model.intercept_)
+print('Coefficient is :',model.coef_)
+
+df=pd.DataFrame({'Actual':Y_test.flatten(), 'Predicted': Y_pred.flatten()})
+print(df)
+
+df1=df.head(25)
+df1.plot(kind='bar',figsize=(16,10))
+plt.grid(which='major', linestyle='-', linewidth='0.5',color='green')
+plt.grid(which='minor', linestyle=':', linewidth='0.5', color='black')
+plt.show()
+
+plt.scatter(X_test,Y_test,color='gray')
+plt.plot(X_test,Y_pred,color='red', linewidth=2)
+plt.show()
+
+print('Mean Absolute Error is :', metrics.mean_absolute_error(Y_test,Y_pred))
+print('Mean Squared Error is :', metrics.mean_squared_error(Y_test,Y_pred))
+print('Root Mean Squared Error is :', np.sqrt(metrics.mean_absolute_error(Y_test,Y_pred)))

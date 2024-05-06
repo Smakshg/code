@@ -1,0 +1,41 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import statistics as s
+import seaborn as sns
+sns.set_style("whitegrid")
+plt.style.use("fivethirtyeight")
+
+df=pd.read_csv("heart.csv")
+
+df.head()
+df.info()
+
+size=df.size
+print("size of dataset is :",size)
+
+shape=df.shape
+print("shape of dataset is :",shape)
+
+print(df.describe())
+print(df.head())
+
+print("data type for each datset is :",df.dtypes.value_counts())
+df.dtypes=='object'
+
+n=df.columns[df.dtypes!='object']
+df[n]
+
+print("",df[n].isnull())
+
+df[n].isnull().sum().sort_values(ascending=False)
+
+df[n].isnull().sum().sort_values(ascending=False)/len(df)
+
+df['age']
+average=s.mean(df['age'])
+print("average age is :",average)
+
+print(df['age'])
+print(df['trestbps'])
+print(df['chol'])
